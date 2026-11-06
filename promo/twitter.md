@@ -1,103 +1,80 @@
 # Twitter / X copy · DSH-PaperReading
 
-> 三个原则：**第一句就要扎人**；第二句给证据；第三句给去处。
-> 配图：`images/x-1-cover.png`（单条）或 `images/xhs-3-shot.png`（thread 第 2 条）。
+> 主线只有一句：**有人给 DeepSeek Harness 写了个读论文的插件**。
+> 配图：`images/x-1-cover.png`（单条）／`images/xhs-3-shot.png`（thread 第 2 条）。
 
 ---
 
-## 一、中文单条（选一条直接发）
+## 一、主推：Emoji 清单体（中文，一条发完）
 
-### A · 痛点开场（推荐）
-
-> 读英文论文最痛苦的不是看不懂，
-> 是你要同时开四个窗口：PDF、翻译、GPT、笔记。
+> 有人给 DeepSeek Harness 写了个读论文的插件 🐳📖
 >
-> 试了个 DeepSeek Harness 的插件 DSH-PaperReading：左中文页右原版页逐页对照，划词就出译文，对话回答带 [p.12] 页码能跳回原文。
+> 📥 PDF / arXiv 链接拖进去
+> 🀄 左边中文页，右边原版页，一页对一页
+> 🖱 拖选一句 → 光标旁直接出译文
+> 💬 问它这篇论文，回答带 [p.12]，点了跳过去
+> 📝 笔记 🧭 框架图 ☁️ 同步 🔢 token 记账
+> 🔒 全在本机跑，开源 MIT
 >
-> 开源 MIT，数据全在本机。
-> github.com/wuke-luke/DSH-PaperReading
-
-### B · 反常识开场
-
-> 别再用翻译软件读论文了。
->
-> 整页翻译会把公式、图表、双栏全打碎。
-> 这个插件换了个思路：原文不动，中文按原位置回填，右边还是原版。
->
-> DeepSeek Harness 插件 DSH-PaperReading，开源 MIT。
-> github.com/wuke-luke/DSH-PaperReading
-
-### C · 数字对比
-
-> 一篇 40 页的论文，我以前要开着 PDF + 翻译 + GPT + 笔记四个窗口读一晚上。
->
-> 现在：一个侧栏。
-> 对照、划词、提问（带页码）、记笔记，全在里面。
->
-> 开源 DSH 插件，数据不出本机。
-> github.com/wuke-luke/DSH-PaperReading
-
-### D · 一句话暴论
-
-> AI 时代最离谱的浪费，是让研究生一边读论文一边复制粘贴。
->
-> 装了个 DeepSeek Harness 插件 DSH-PaperReading，四件事收进一个侧栏：对照翻译 / 划词即译 / 带页码的论文对话 / 笔记。
 > github.com/wuke-luke/DSH-PaperReading
 
 ---
 
-## 二、English single (pick one)
+## 二、主推：Emoji 清单体（English, one tweet）
 
-### A · Pain hook
-
-> The worst part of reading papers isn't the math.
-> It's the four-window shuffle: PDF → translator → ChatGPT → notes.
+> Someone built a paper-reading plugin for DeepSeek Harness 🐳📖
 >
-> Found a DeepSeek Harness plugin that collapses it into one sidebar — bilingual pages, select-to-translate, chat with page citations.
+> 📥 drop a PDF or an arXiv link
+> 🀄 Chinese page left, original page right, page by page
+> 🖱 drag a sentence → translation appears next to the cursor
+> 💬 ask the paper, answers cite [p.12] and jump there
+> 📝 notes 🧭 diagrams ☁️ sync 🔢 token usage
+> 🔒 local-first, MIT
 >
-> MIT, runs locally.
-> github.com/wuke-luke/DSH-PaperReading
-
-### B · Contrarian hook
-
-> Stop feeding papers to a translator that shreds the layout.
->
-> This one keeps the original page and writes the translation back into the same boxes — formulas, figures and two-column text stay put.
->
-> DSH-PaperReading, open source.
-> github.com/wuke-luke/DSH-PaperReading
-
-### C · Short & punchy
-
-> 40 pages. One sidebar.
-> Translate ⇄ original page by page, drag to translate, ask the paper and get answers with page numbers.
->
-> Open-source plugin for DeepSeek Harness.
 > github.com/wuke-luke/DSH-PaperReading
 
 ---
 
-## 三、Thread（最强形态，4 条）
+## 三、更长一点的中文版（想多讲一句"为什么"时用）
+
+> 有人给 DeepSeek Harness 写了读论文的插件 🐳📖
+>
+> 以前读一篇英文论文：PDF 查词 → 浏览器翻译整页 → 复制段落问 GPT → 笔记记在第四个 app。
+>
+> 它把这四件事塞进一个侧栏：
+> 🀄 左中文页 / 右原版页，逐页对照，公式图表不动
+> 🖱 划词即译，不用开新窗口
+> 💬 对话带页码，点一下跳回原文
+> 🔒 翻译和对话都在本机发起
+>
+> 开源 MIT 👉 github.com/wuke-luke/DSH-PaperReading
+
+---
+
+## 四、Thread（Emoji 版，4 条）
 
 **1/**
-> Reading a paper shouldn't require four windows.
+> 🐳 Someone built a paper-reading plugin for DeepSeek Harness.
 >
-> I tried a DeepSeek Harness plugin that puts the PDF, the translation, the chat and the notes in one sidebar: DSH-PaperReading.
+> One sidebar: PDF + translation + chat + notes. No more four-window shuffle.
+>
+> DSH-PaperReading 🧵
 
 **2/**
-> The translation is the interesting part.
+> 🀄 The translation is the clever part.
 >
-> It doesn't re-flow the paper. It writes Chinese back into the original paragraph boxes, with the background colour sampled from the page — so two-column layouts, tinted abstract boxes and figures survive.
+> It doesn't re-flow the paper — it writes Chinese back into the original paragraph boxes and samples the background colour from the page. Two-column layouts, tinted abstract boxes, figures: all stay.
 
 **3/**
-> And it does the boring-but-vital stuff:
-> • arXiv ID / link / local PDF import
-> • drag a sentence → translation next to the cursor
-> • paper chat that cites [p.12] and jumps there
-> • notes, diagrams, sync, per-paper token usage
+> What you get inside:
+>
+> 📥 local PDF / arXiv ID / arXiv link
+> 🖱 drag a sentence → translation at the cursor
+> 💬 paper chat citing [p.12]
+> 📝 notes 🧭 diagrams ☁️ sync 🔢 token usage
 
 **4/**
-> Everything stays on your machine — PDFs, translations, notes. MIT licensed, no keys baked in.
+> 🔒 PDFs, translations and notes never leave your machine. MIT, no keys baked in.
 >
 > Install: `dsh plugin --profile web add https://github.com/wuke-luke/DSH-PaperReading`
 >
@@ -105,20 +82,19 @@
 
 ---
 
-## 四、发布技巧（为什么这么写）
+## 五、备选开场（换开头，正文不变）
+
+- 🐳 有人做了个读论文的插件，专治「四个窗口来回切」。
+- 📄 把论文丢给 AI 的时代结束了——现在是把 AI 装进论文阅读器。
+- 🀄 左边中文，右边原文，一页对一页。有人真把它做出来了。
+- 🔍 划一句翻一句，比复制到翻译软件快十倍（不夸张，真的）。
+
+## 六、发布技巧
 
 | 做法 | 原因 |
 |---|---|
-| 第一行不超过 12 个字就断句 | 时间线只露前两行，钩子必须在折叠线以上 |
-| 先讲"痛"，再讲"它怎么解决" | 直接列功能没人看，痛点才有共鸣 |
-| 单条不放链接，链接放回复 | 带外链的推文曝光更低 |
-| 具体数字（4 个窗口 / 40 页 / [p.12]） | 抽象形容词不如可验证的细节 |
-| 一条只讲一个点 | thread 第 2 条单独讲"翻译不破坏版式"，这是和竞品的差异 |
-| 结尾给可复制的安装命令 | 降低行动成本，转推的人也能直接试 |
-
-## 五、可选的钩子素材（自己再组合）
-
-- "把 PDF 丢给 AI 的时代，早该结束了。"
-- "你读论文的时间，一半花在窗口切换上。"
-- "翻译软件把你的公式翻没了，对吧？"
-- "Open source, no cloud, no keys."（英文收尾很好用）
+| 第一行就是「有人做了个插件」+ emoji | 时间线只露前两行，钩子必须是"发现有东西"的信号 |
+| emoji 每行一个，行内不超过 20 字 | 手机上一眼扫完，信息密度高但不挤 |
+| 单条不放链接，链接放第一条回复 | 带外链的推曝光更低 |
+| 具体数字（[p.12] / 四个窗口 / 一页对一页） | 抽象形容词不如可验证的细节 |
+| thread 第 2 条单独讲"不破坏版式" | 这是和普通整页翻译的唯一差异，也是最值得转的一句 |
