@@ -59,13 +59,7 @@ DeepPaperReading puts **the PDF, the translation, the chat, the notes and the di
 
 Three ways in.
 
-**① From the plugin market** (searchable in dshmarket / Discover once merged)
-
-```bash
-dsh plugin add dsh-paperreading
-```
-
-**② Straight from GitHub** (works today, no npm publish needed)
+**① Straight from GitHub** (fastest, no npm account needed)
 
 ```bash
 # git address
@@ -74,6 +68,12 @@ dsh plugin --profile web add https://github.com/wuke-luke/DSH-PaperReading
 # or the prebuilt tarball from the release (3.3 MB)
 # https://github.com/wuke-luke/DSH-PaperReading/releases/latest
 dsh plugin --profile web add ./dsh-paperreading-0.6.4.tgz
+```
+
+**② From the market / npm** (once the entry merges; the npm website may 403 on some networks, installing from the registry still works)
+
+```bash
+dsh plugin add dsh-paperreading
 ```
 
 > `dsh plugin add` accepts a package name, name@version, a git address, a tarball, or an absolute path. The in-app "install plugin" dialog accepts the same.

@@ -59,13 +59,7 @@ DeepPaperReading 把这些收进 DSH 的一个侧栏面板：**原文、译文�
 
 三种装法，任选其一。
 
-**① 从插件市场**（合入后可在 dshmarket / Discover 搜到）
-
-```bash
-dsh plugin add dsh-paperreading
-```
-
-**② 直接从 GitHub 装**（现在就能用，不依赖 npm 发布）
+**① 直接从 GitHub 装**（最快，不需要 npm 账号）
 
 ```bash
 # Git 地址
@@ -74,6 +68,12 @@ dsh plugin --profile web add https://github.com/wuke-luke/DSH-PaperReading
 # 或 Release 里的预构建包（3.3 MB）
 # https://github.com/wuke-luke/DSH-PaperReading/releases/latest
 dsh plugin --profile web add ./dsh-paperreading-0.6.4.tgz
+```
+
+**② 从插件市场 / npm**（条目合入后可用；npm 网页版在部分网络下 403，装包走 registry 不受影响）
+
+```bash
+dsh plugin add dsh-paperreading
 ```
 
 > `dsh plugin add` 接受：包名、带版本号、Git 地址、tarball、本地绝对路径。DSH 里的「安装插件」对话框同样支持这几种。
