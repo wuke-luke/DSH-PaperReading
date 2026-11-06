@@ -1,9 +1,2 @@
-﻿dev-data/
-.devdata/
-node_modules/
-.dsh-sdk/
-dist/
-*.log
-.DS_Store
-Thumbs.db
-*.tgz
+﻿*.tgz
+!dist/*.tgz

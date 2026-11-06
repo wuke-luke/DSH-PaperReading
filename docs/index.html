@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>DSH-PaperReading · 在 DeepSeek Harness 里读论文</title>
+<meta name="description" content="DSH-PaperReading：DeepSeek Harness 的论文阅读插件。中英整页对照、划词即译、带页码引用的伴读对话、笔记与同步。开源 MIT。" />
+<style>
+  :root {
+    --paper: #f7f3ea; --card: #fffdf8; --ink: #1f1c18; --ink-2: #45403a;
+    --muted: #7b7367; --faint: #a89f90; --accent: #b4565f; --accent-soft: #f0dfe0; --rule: #e6dfd2;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background:
+      radial-gradient(1100px 520px at 82% -10%, rgba(180,86,95,.10), transparent 62%),
+      radial-gradient(760px 460px at 2% 100%, rgba(120,110,90,.10), transparent 60%),
+      var(--paper);
+    color: var(--ink);
+    font-family: "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 64px 28px 96px; }
+  header { display: flex; align-items: center; gap: 18px; }
+  header img { width: 76px; height: 76px; }
+  .kicker { font-size: 12px; letter-spacing: .22em; color: var(--muted); text-transform: uppercase; }
+  h1 {
+    font-family: "Iowan Old Style", "Palatino Linotype", "Songti SC", Georgia, serif;
+    font-size: clamp(38px, 6vw, 62px); font-weight: 500; line-height: 1.06; margin-top: 26px; letter-spacing: -.01em;
+  }
+  .lede { margin-top: 18px; font-size: 17px; line-height: 1.7; color: var(--ink-2); max-width: 620px; }
+  .chips { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
+  .chip { font-size: 13px; padding: 7px 14px; border-radius: 999px; background: var(--card); border: 1px solid var(--rule); color: var(--ink-2); }
+  .chip b { color: var(--accent); }
+  section { margin-top: 56px; }
+  h2 { font-size: 13px; letter-spacing: .2em; text-transform: uppercase; color: var(--faint); font-weight: 600; }
+  .install { margin-top: 16px; display: grid; gap: 14px; }
+  .box { background: var(--card); border: 1px solid var(--rule); border-radius: 14px; padding: 18px 20px; }
+  .box h3 { font-size: 15px; font-weight: 600; }
+  .box p { margin-top: 6px; font-size: 13px; color: var(--muted); line-height: 1.6; }
+  pre {
+    margin-top: 10px; background: #201d19; color: #f2ece0; border-radius: 10px;
+    padding: 12px 14px; font: 12.5px/1.7 "JetBrains Mono", Consolas, monospace; overflow-x: auto;
+  }
+  pre .c { color: #8f8577; }
+  .grid { margin-top: 16px; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; }
+  .grid .box { padding: 16px 18px; }
+  .grid h3 { font-size: 14px; }
+  .shots { display: grid; gap: 14px; margin-top: 16px; }
+  .shots img { width: 100%; border-radius: 14px; border: 1px solid var(--rule); box-shadow: 0 24px 50px -34px rgba(40,34,26,.5); display: block; }
+  video { width: 100%; border-radius: 14px; border: 1px solid var(--rule); margin-top: 16px; }
+  footer { margin-top: 72px; padding-top: 22px; border-top: 1px solid var(--rule); font-size: 12.5px; color: var(--faint); display: flex; flex-wrap: wrap; gap: 14px; justify-content: space-between; }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <img src="./logo.svg" alt="DSH-PaperReading" />
+    <div>
+      <div class="kicker">DeepSeek Harness Plugin</div>
+      <div style="margin-top:6px;font-size:13px;color:var(--faint)">开源 MIT · 数据留在本机</div>
+    </div>
+  </header>
+
+  <h1>读论文，<br />别再切四个窗口</h1>
+  <p class="lede">
+    <b>DSH-PaperReading</b> 把 PDF、翻译、对话、笔记收进 DeepSeek Harness 的一个侧栏：
+    左边中文页、右边原版页逐页对照，划词就出译文，对话回答带页码可以跳回原文。
+  </p>
+  <div class="chips">
+    <span class="chip"><b>中英</b>整页对照</span>
+    <span class="chip"><b>划词</b>即译</span>
+    <span class="chip"><b>页码</b>引用对话</span>
+    <span class="chip"><b>笔记</b> · 框架图</span>
+    <span class="chip"><b>同步</b> · token 记账</span>
+  </div>
+
+  <section>
+    <h2>Install</h2>
+    <div class="install">
+      <div class="box">
+        <h3>① 一条命令（推荐）</h3>
+        <p>不需要 npm 账号，直接从 GitHub 装。</p>
+        <pre>dsh plugin --profile web add github:wuke-luke/DSH-PaperReading</pre>
+      </div>
+      <div class="box">
+        <h3>② 预构建包</h3>
+        <p>下载 tarball 后本地安装，国内可用 jsDelivr CDN。</p>
+        <pre><span class="c"># CDN（国内较快）</span>
+curl -LO https://cdn.jsdelivr.net/gh/wuke-luke/DSH-PaperReading@master/dist/dsh-paperreading-0.6.4.tgz
+dsh plugin --profile web add ./dsh-paperreading-0.6.4.tgz</pre>
+      </div>
+      <div class="box">
+        <h3>③ 插件市场</h3>
+        <p>dshmarket → 发现，搜索 <b>DSH-PaperReading</b>（条目审核中）。</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Demo</h2>
+    <video src="./deeppaperreading-demo.mp4" controls poster="./video-poster.png" preload="none"></video>
+  </section>
+
+  <section>
+    <h2>What you get</h2>
+    <div class="grid">
+      <div class="box"><h3>📥 导入</h3><p>本地 PDF、arXiv 编号或链接，拖进去。</p></div>
+      <div class="box"><h3>🀄 整页对照</h3><p>左中文 / 右原版，版式跟着原文走。</p></div>
+      <div class="box"><h3>🔍 划词翻译</h3><p>选中一句，光标旁出译文。</p></div>
+      <div class="box"><h3>💬 伴读对话</h3><p>回答带 [p.12]，点了跳原文。</p></div>
+      <div class="box"><h3>📝 笔记 · 🧭 框架图</h3><p>每篇论文独立保存。</p></div>
+      <div class="box"><h3>☁️ 同步 · 🔢 Token</h3><p>本地 / WebDAV / Drive / 百度网盘；按论文记 token。</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Screenshots</h2>
+    <div class="shots">
+      <img src="./screenshot-overview.png" alt="中英对照阅读界面" />
+      <img src="./screenshot-selection.png" alt="划词翻译卡片" />
+    </div>
+  </section>
+
+  <footer>
+    <span><a href="https://github.com/wuke-luke/DSH-PaperReading">github.com/wuke-luke/DSH-PaperReading</a> · MIT</span>
+    <span>用 pdf.js 与 KaTeX 构建</span>
+  </footer>
+</div>
+</body>
+</html>
