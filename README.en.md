@@ -57,23 +57,41 @@ DeepPaperReading puts **the PDF, the translation, the chat, the notes and the di
 
 ## Getting started
 
+Three ways in.
+
+**① From the plugin market** (searchable in dshmarket / Discover once merged)
+
+```bash
+dsh plugin add dsh-paperreading
+```
+
+**② From the Release tarball** (works today, no npm publish needed)
+
+```bash
+# download dsh-paperreading-0.6.4.tgz from
+# https://github.com/wuke-luke/DSH-PaperReading/releases/latest
+dsh plugin --profile web add ./dsh-paperreading-0.6.4.tgz
+```
+
+**③ From source** (for hacking)
+
 ```bash
 git clone https://github.com/wuke-luke/DSH-PaperReading DSH-PaperReading
 cd DSH-PaperReading
 node dev/server.mjs     # standalone preview: http://127.0.0.1:7788/paper-studio/
 ```
 
-Enable it inside DSH:
+Wire it into a DSH profile:
 
 ```jsonc
 // ~/.dsh/profiles/<profile>/package.json
 {
-  "dependencies": { "dsh-paperreading": "link:D:/path/to/DeepPaperReading" },
+  "dependencies": { "dsh-paperreading": "link:D:/path/to/DSH-PaperReading" },
   "dsh": { "bundles": ["dsh-paperreading"] }
 }
 ```
 
-Restart DSH and the **DeepPaperReading** icon appears in the sidebar. Host changes need a restart; web assets only need a panel reload.
+Restart DSH and the **DSH-PaperReading** icon appears in the sidebar.
 
 ## Usage
 

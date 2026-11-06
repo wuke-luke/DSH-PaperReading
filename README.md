@@ -57,23 +57,41 @@ DeepPaperReading 把这些收进 DSH 的一个侧栏面板：**原文、译文�
 
 ## 快速开始
 
+三种装法，任选其一。
+
+**① 从插件市场**（合入后可在 dshmarket / Discover 搜到）
+
+```bash
+dsh plugin add dsh-paperreading
+```
+
+**② 从 Release 预构建包**（现在就能用，不依赖 npm）
+
+```bash
+# 下载 dsh-paperreading-0.6.4.tgz
+# https://github.com/wuke-luke/DSH-PaperReading/releases/latest
+dsh plugin --profile web add ./dsh-paperreading-0.6.4.tgz
+```
+
+**③ 从源码**（改动调试用）
+
 ```bash
 git clone https://github.com/wuke-luke/DSH-PaperReading DSH-PaperReading
 cd DSH-PaperReading
 node dev/server.mjs     # 独立预览 http://127.0.0.1:7788/paper-studio/
 ```
 
-在 DSH 里启用：
+挂进 DSH profile：
 
 ```jsonc
 // ~/.dsh/profiles/<profile>/package.json
 {
-  "dependencies": { "dsh-paperreading": "link:D:/path/to/DeepPaperReading" },
+  "dependencies": { "dsh-paperreading": "link:D:/path/to/DSH-PaperReading" },
   "dsh": { "bundles": ["dsh-paperreading"] }
 }
 ```
 
-重启 DSH，左侧栏出现 **DeepPaperReading**。宿主改动需重启，前端资源刷新面板即可。
+重启 DSH，左侧栏出现 **DSH-PaperReading**。宿主改动需重启，前端资源刷新面板即可。
 
 ## 使用
 
