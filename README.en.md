@@ -65,13 +65,18 @@ Three ways in.
 dsh plugin add dsh-paperreading
 ```
 
-**② From the Release tarball** (works today, no npm publish needed)
+**② Straight from GitHub** (works today, no npm publish needed)
 
 ```bash
-# download dsh-paperreading-0.6.4.tgz from
+# git address
+dsh plugin --profile web add https://github.com/wuke-luke/DSH-PaperReading
+
+# or the prebuilt tarball from the release (3.3 MB)
 # https://github.com/wuke-luke/DSH-PaperReading/releases/latest
 dsh plugin --profile web add ./dsh-paperreading-0.6.4.tgz
 ```
+
+> `dsh plugin add` accepts a package name, name@version, a git address, a tarball, or an absolute path. The in-app "install plugin" dialog accepts the same.
 
 **③ From source** (for hacking)
 
