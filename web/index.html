@@ -1,0 +1,368 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="color-scheme" content="light" />
+<title>DeepPaperReading</title>
+<link rel="stylesheet" href="./vendor/katex/katex.min.css" />
+<link rel="stylesheet" href="./app.css" />
+</head>
+<body>
+
+<div id="app" class="app">
+
+  <!-- ── Top bar ─────────────────────────────────────────────────────── -->
+  <header class="topbar">
+    <div class="topbar-left">
+      <button class="icon-btn" id="btn-sidebar" title="收起/展开文献库" aria-label="收起或展开文献库">
+        <svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h10M4 18h16"/></svg>
+      </button>
+      <div class="brand">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.05" stroke-linecap="round" stroke-linejoin="round">
+            <g transform="translate(1.45 1.55) scale(0.209)">
+              <path d="M69.35 0.00 L70.21 0.12 L70.70 0.61 L71.79 4.03 L73.26 5.86 L74.73 6.84 L77.41 7.94 L80.10 10.26 L81.20 12.45 L81.44 13.92 L83.03 12.45 L85.71 10.99 L88.28 10.38 L91.70 10.38 L93.16 10.01 L95.24 8.79 L98.05 6.11 L99.27 6.35 L100.00 7.57 L99.76 10.87 L98.66 15.02 L97.56 17.34 L95.73 19.90 L93.16 22.22 L90.23 23.93 L86.94 25.03 L84.25 25.40 L83.88 25.76 L83.76 28.69 L83.03 33.33 L81.81 37.97 L79.85 43.22 L77.90 47.25 L75.09 52.01 L71.67 56.78 L69.72 58.97 L70.57 59.83 L73.14 60.56 L78.63 63.00 L79.24 63.98 L78.88 65.81 L78.14 66.54 L76.92 67.03 L72.41 67.64 L65.81 67.16 L62.15 65.93 L58.12 68.99 L52.38 71.79 L45.42 73.38 L37.24 73.75 L30.77 72.89 L24.54 70.94 L18.56 67.77 L12.82 63.37 L8.42 58.73 L4.76 53.36 L2.81 49.33 L1.59 45.91 L0.00 37.97 L0.00 30.65 L1.10 25.03 L3.42 19.41 L7.33 13.68 L10.74 10.38 L13.92 8.18 L16.61 6.84 L20.15 5.62 L26.50 4.64 L31.87 4.64 L36.87 5.25 L46.03 2.20 L49.08 1.83 L51.65 1.95 L52.99 2.44 L53.48 3.17 L51.04 4.88 L49.82 6.72 L49.69 8.79 L50.79 10.87 L56.90 15.38 L65.08 23.69 L67.64 25.89 L71.55 28.21 L73.26 28.57 L73.75 27.84 L74.85 23.69 L74.24 22.95 L72.53 21.86 L70.21 19.54 L68.99 17.83 L67.64 15.14 L66.67 11.11 L66.54 7.20 L66.91 4.76 L68.50 0.73ZM54.21 29.30 L52.87 29.67 L51.89 30.65 L51.77 31.62 L52.87 32.48 L55.56 32.84 L57.14 34.19 L57.39 34.92 L57.14 38.58 L57.88 40.54 L59.58 42.12 L61.42 42.98 L63.86 42.98 L65.93 42.12 L66.42 41.51 L66.06 39.56 L65.08 37.73 L61.90 33.33 L58.36 30.28 L56.29 29.43Z" stroke-width="5" />
+            </g>
+            <path d="M4.9 15.55c2.55-1 4.85-.9 6.45.5 1.6-1.4 3.9-1.5 6.45-.5v4.25c-2.55-1-4.85-.9-6.45.5-1.6-1.4-3.9-1.5-6.45-.5z" />
+            <path d="M11.35 16v4.3" stroke-width="0.9" />
+          </svg>
+        </span>
+        <span class="brand-text">DeepPaperReading</span>
+      </div>
+      <span class="crumb" id="crumb"></span>
+    </div>
+    <div class="topbar-right">
+      <div class="mode-switch" id="mode-switch" role="tablist" aria-label="对照模式">
+        <button data-mode="source" role="tab">原文</button>
+        <button data-mode="dual" role="tab" aria-selected="true">对照</button>
+      </div>
+      <button class="ghost-btn" id="btn-translate-all" title="翻译整篇（可随时中断）">
+        <svg viewBox="0 0 24 24"><path d="M4 5h9M8.5 5c0 4-2 7-4.5 8.5M6 9c1.2 2.4 3 4 5 5"/><path d="M13 19l4-9 4 9M14.5 16h5"/></svg>
+        <span>全文翻译</span>
+      </button>
+      <button class="icon-btn" id="btn-settings" title="设置" aria-label="设置">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1A1.7 1.7 0 0 0 9 19.4a1.7 1.7 0 0 0-1.9.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.9 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1A1.7 1.7 0 0 0 4.6 9a1.7 1.7 0 0 0-.3-1.9l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.9.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.9-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.9V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- ── Body ────────────────────────────────────────────────────────── -->
+  <div class="body">
+
+    <!-- Library rail -->
+    <aside class="rail" id="rail">
+      <div class="rail-search">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4 4"/></svg>
+        <input id="search" type="search" placeholder="搜索标题、作者、笔记…" autocomplete="off" />
+      </div>
+      <div class="rail-head">
+        <span class="rail-title">文献库</span>
+        <div class="rail-actions">
+          <button class="rail-btn" id="btn-new-folder" title="新建专题">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6.5A1.5 1.5 0 0 1 5.5 5H10l2 2h6.5A1.5 1.5 0 0 1 20 8.5v9A1.5 1.5 0 0 1 18.5 19h-13A1.5 1.5 0 0 1 4 17.5z"/><path d="M12 11v5M9.5 13.5h5"/></svg>
+            专题
+          </button>
+          <button class="rail-btn accent" id="btn-import" title="导入论文：本地 PDF、arXiv 或任意 PDF 链接">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4.5v10M8 11l4 4 4-4"/><path d="M5 18.5h14"/></svg>
+            导入
+          </button>
+        </div>
+      </div>
+      <form class="new-folder-row" id="new-folder-form" hidden>
+        <input id="new-folder-name" type="text" placeholder="专题名称，例如 RSI 方向" autocomplete="off" maxlength="40" />
+        <button class="primary-btn sm" type="submit">创建</button>
+        <button class="link-btn" type="button" id="new-folder-cancel">取消</button>
+      </form>
+      <div class="rail-list" id="library-list"></div>
+      <div class="rail-foot">
+        <span id="lib-stat">—</span>
+        <span class="dot">·</span>
+        <span id="lib-model">模型</span>
+      </div>
+    </aside>
+
+    <div class="split" id="split-rail" role="separator" aria-orientation="vertical" aria-label="调整文献库宽度" title="拖动调整文献库宽度，双击复位"></div>
+
+    <!-- Reading surface -->
+    <main class="reader" id="reader">
+      <div class="reader-scroll" id="reader-scroll"></div>
+      <div class="empty" id="empty">
+        <div class="empty-card">
+          <svg class="empty-art" viewBox="0 0 160 128" aria-hidden="true">
+            <g fill="none" stroke="#8c2f39" stroke-linecap="round" stroke-linejoin="round">
+              <g transform="translate(30 14) scale(1.04)">
+                <path d="M69.35 0.00 L70.21 0.12 L70.70 0.61 L71.79 4.03 L73.26 5.86 L74.73 6.84 L77.41 7.94 L80.10 10.26 L81.20 12.45 L81.44 13.92 L83.03 12.45 L85.71 10.99 L88.28 10.38 L91.70 10.38 L93.16 10.01 L95.24 8.79 L98.05 6.11 L99.27 6.35 L100.00 7.57 L99.76 10.87 L98.66 15.02 L97.56 17.34 L95.73 19.90 L93.16 22.22 L90.23 23.93 L86.94 25.03 L84.25 25.40 L83.88 25.76 L83.76 28.69 L83.03 33.33 L81.81 37.97 L79.85 43.22 L77.90 47.25 L75.09 52.01 L71.67 56.78 L69.72 58.97 L70.57 59.83 L73.14 60.56 L78.63 63.00 L79.24 63.98 L78.88 65.81 L78.14 66.54 L76.92 67.03 L72.41 67.64 L65.81 67.16 L62.15 65.93 L58.12 68.99 L52.38 71.79 L45.42 73.38 L37.24 73.75 L30.77 72.89 L24.54 70.94 L18.56 67.77 L12.82 63.37 L8.42 58.73 L4.76 53.36 L2.81 49.33 L1.59 45.91 L0.00 37.97 L0.00 30.65 L1.10 25.03 L3.42 19.41 L7.33 13.68 L10.74 10.38 L13.92 8.18 L16.61 6.84 L20.15 5.62 L26.50 4.64 L31.87 4.64 L36.87 5.25 L46.03 2.20 L49.08 1.83 L51.65 1.95 L52.99 2.44 L53.48 3.17 L51.04 4.88 L49.82 6.72 L49.69 8.79 L50.79 10.87 L56.90 15.38 L65.08 23.69 L67.64 25.89 L71.55 28.21 L73.26 28.57 L73.75 27.84 L74.85 23.69 L74.24 22.95 L72.53 21.86 L70.21 19.54 L68.99 17.83 L67.64 15.14 L66.67 11.11 L66.54 7.20 L66.91 4.76 L68.50 0.73ZM54.21 29.30 L52.87 29.67 L51.89 30.65 L51.77 31.62 L52.87 32.48 L55.56 32.84 L57.14 34.19 L57.39 34.92 L57.14 38.58 L57.88 40.54 L59.58 42.12 L61.42 42.98 L63.86 42.98 L65.93 42.12 L66.42 41.51 L66.06 39.56 L65.08 37.73 L61.90 33.33 L58.36 30.28 L56.29 29.43Z" stroke-width="1.9" />
+              </g>
+              <path d="M4.9 15.55c2.55-1 4.85-.9 6.45.5 1.6-1.4 3.9-1.5 6.45-.5v4.25c-2.55-1-4.85-.9-6.45.5-1.6-1.4-3.9-1.5-6.45-.5z" stroke-width="2.1" fill="#fffdf8" transform="translate(35 20) scale(4.1)" />
+              <path d="M11.35 16v4.3" stroke-width="1.8" transform="translate(35 20) scale(4.1)" />
+            </g>
+            <g fill="#b08324">
+              <circle cx="132" cy="30" r="2.6" opacity=".42" />
+              <circle cx="26" cy="42" r="2" opacity=".3" />
+              <circle cx="138" cy="84" r="1.8" opacity=".26" />
+            </g>
+          </svg>
+          <h1>把论文放进来，开始精读</h1>
+          <p class="empty-sub">拖入 PDF 文件，或粘贴 arXiv 编号 / PDF 直链。</p>
+          <div class="drop" id="drop">
+            <div class="drop-inner">
+              <strong>拖拽 PDF 到这里</strong>
+              <span>或 <button class="link-btn" id="btn-browse">选择本地文件</button></span>
+            </div>
+          </div>
+          <form class="url-row" id="url-form">
+            <input id="url-input" type="text" placeholder="arXiv:2410.12345 / https://arxiv.org/abs/… / https://…/paper.pdf" spellcheck="false" />
+            <button class="primary-btn" type="submit">导入</button>
+          </form>
+          <div class="empty-hint" id="empty-hint"></div>
+        </div>
+      </div>
+    </main>
+
+    <div class="split" id="split-side" role="separator" aria-orientation="vertical" aria-label="调整右栏宽度" title="拖动调整右栏宽度，双击复位"></div>
+
+    <!-- Right rail: chat / notes / figures -->
+    <aside class="side" id="side">
+      <div class="side-tabs" role="tablist">
+        <button data-tab="chat" class="active" role="tab">伴读对话</button>
+        <button data-tab="notes" role="tab">笔记</button>
+        <button data-tab="figures" role="tab">框架图</button>
+        <button data-tab="discover" role="tab">发现</button>
+      </div>
+      <section class="pane" data-pane="chat">
+        <div class="chat-log" id="chat-log"></div>
+        <div class="chat-starters" id="chat-starters"></div>
+        <form class="composer" id="chat-form">
+          <div class="composer-box">
+            <textarea id="chat-input" rows="1" placeholder="就这篇论文提问，回答会带页码…"></textarea>
+            <div class="composer-actions">
+              <label class="mini-toggle" title="带上选中的原文">
+                <input type="checkbox" id="chat-with-selection" />
+                <span>引用选区</span>
+              </label>
+              <button type="button" class="ghost-btn sm" id="chat-stop" hidden title="停止生成">停止</button>
+            <button type="submit" class="send-btn" id="chat-send" title="发送 (Enter)">
+                <svg viewBox="0 0 24 24"><path d="M5 12h13M12 5.5L18.5 12 12 18.5"/></svg>
+              </button>
+            </div>
+          </div>
+          <div class="composer-foot">
+            <select id="chat-model" class="model-select" title="对话使用的模型"></select>
+            <button type="button" class="link-btn" id="chat-clear">新对话</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="pane" data-pane="notes" hidden>
+        <div class="notes-bar">
+          <div class="notes-tools">
+            <button class="ghost-btn sm" id="notes-preview-toggle">预览</button>
+            <button class="ghost-btn sm" id="notes-export">导出 .md</button>
+          </div>
+          <span class="save-state" id="notes-state">已保存</span>
+        </div>
+        <textarea class="notes-editor" id="notes-editor" placeholder="写下你的理解、疑问、可复用的想法…&#10;&#10;从原文选中一段，右键菜单里可以「记入笔记」。"></textarea>
+        <article class="notes-preview markdown" id="notes-preview" hidden></article>
+      </section>
+
+      <section class="pane" data-pane="figures" hidden>
+        <div class="fig-bar">
+          <button class="ghost-btn sm" data-fig="framework">生成框架图</button>
+          <button class="ghost-btn sm" data-fig="concept">论证地图</button>
+          <button class="ghost-btn sm" data-fig="compare">方法对照</button>
+        </div>
+        <div class="fig-body" id="fig-body">
+          <p class="fig-hint">模型先读懂方法再画图：从输入、核心模块到输出，生成可编辑、可导出的矢量图。</p>
+        </div>
+      </section>
+
+      <section class="pane" data-pane="discover" hidden>
+        <div class="fig-bar discover-bar">
+          <button class="ghost-btn sm" id="discover-refresh">刷新推荐</button>
+          <span class="discover-status" id="discover-status"></span>
+        </div>
+        <div class="discover-body" id="discover-body"></div>
+      </section>
+    </aside>
+  </div>
+
+  <!-- Floating bits -->
+  <div class="toast" id="toast" hidden></div>
+  <div class="progress-bar" id="progress" hidden><i></i><span></span></div>
+
+  <div class="modal" id="settings" hidden>
+    <div class="modal-card">
+      <header class="modal-head">
+        <h2>设置</h2>
+        <button class="icon-btn" id="settings-close" aria-label="关闭">
+          <svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>
+        </button>
+      </header>
+      <div class="modal-body">
+        <section class="field">
+          <label>模型来源</label>
+          <div class="seg wide" id="llm-mode">
+            <button data-mode="auto">自动</button>
+            <button data-mode="host">DSH 账号</button>
+            <button data-mode="http">API Key 直连</button>
+          </div>
+          <p class="field-hint" id="llm-current">正在读取…</p>
+        </section>
+        <section class="field" id="http-fields">
+          <label>Base URL</label>
+          <input id="cfg-baseurl" placeholder="https://api.deepseek.com/v1" spellcheck="false" />
+          <label>API Key</label>
+          <input id="cfg-apikey" type="password" placeholder="sk-…（只保存在本机）" autocomplete="off" />
+          <label>模型名</label>
+          <input id="cfg-model" placeholder="deepseek-chat" spellcheck="false" />
+          <div class="sync-actions">
+            <button class="ghost-btn sm" id="settings-import-key">从「论文伴读」导入 Key</button>
+            <span class="field-hint" id="import-key-hint"></span>
+          </div>
+        </section>
+        <section class="field">
+          <label>翻译风格</label>
+          <div class="seg wide" id="translate-style">
+            <button data-style="academic">学术</button>
+            <button data-style="plain">通俗</button>
+            <button data-style="concise">简洁</button>
+          </div>
+          <p class="field-hint">影响全文翻译与划词翻译：学术＝术语准确、贴近原文；通俗＝大白话讲清楚；简洁＝只留核心信息。</p>
+        </section>
+        <section class="field">
+          <label>领域（影响术语译法）</label>
+          <input id="cfg-discipline" placeholder="例如：计算机视觉 / 强化学习 / 机器人" />
+        </section>
+        <section class="field sync-block">
+          <label>跨设备同步</label>
+          <div class="seg wide" id="sync-kind">
+            <button data-kind="folder">文件夹</button>
+            <button data-kind="webdav">WebDAV</button>
+            <button data-kind="gdrive">Google Drive</button>
+            <button data-kind="baidu">百度网盘</button>
+          </div>
+          <p class="field-hint" id="sync-hint">选一个你已有的云盘：文献库、笔记、译文、对话会同步过去，换设备只要绑定同一个目标。</p>
+
+          <div class="sync-fields" id="sync-fields-folder">
+            <input id="sync-root" placeholder="同步文件夹，例如 D:\OneDrive\paper-studio" spellcheck="false" />
+            <p class="field-hint">最省事的方式：指向 OneDrive / 坚果云 / iCloud 桌面端已经在同步的目录。</p>
+          </div>
+
+          <div class="sync-fields" id="sync-fields-webdav" hidden>
+            <input id="sync-webdav-url" placeholder="https://dav.jianguoyun.com/dav/paper-studio/" spellcheck="false" />
+            <input id="sync-webdav-user" placeholder="账号（坚果云用邮箱）" spellcheck="false" />
+            <input id="sync-webdav-pass" type="password" placeholder="应用密码" autocomplete="off" />
+          </div>
+
+          <div class="sync-fields" id="sync-fields-gdrive" hidden>
+            <input id="sync-gdrive-id" placeholder="OAuth Client ID（Google Cloud → 桌面应用）" spellcheck="false" />
+            <input id="sync-gdrive-secret" type="password" placeholder="Client Secret" autocomplete="off" />
+            <p class="field-hint">回调地址填 <code id="sync-redirect">http://127.0.0.1:7357/oauth/callback</code>，然后点绑定。</p>
+            <button class="ghost-btn sm" id="sync-connect-gdrive">绑定 Google 账号</button>
+          </div>
+
+          <div class="sync-fields" id="sync-fields-baidu" hidden>
+          <p class="field-hint" id="baidu-local-status">正在检测本机的百度网盘同步空间…</p>
+          <div class="sync-actions">
+            <button class="ghost-btn sm" id="sync-baidu-local" disabled>使用本机百度网盘文件夹</button>
+          </div>
+          <p class="field-hint">推荐：在百度网盘客户端开启「同步空间」，插件把论文、译文、笔记写进去，客户端会自己上传；换台电脑绑定同一个文件夹就能接着用。</p>
+          <p class="field-hint">下面的 AppKey 是百度开放平台的企业接口，需要你自己注册应用，一般用不到。</p>
+            <input id="sync-baidu-key" placeholder="AppKey（百度网盘开放平台）" spellcheck="false" />
+            <input id="sync-baidu-secret" type="password" placeholder="SecretKey" autocomplete="off" />
+            <p class="field-hint">授权回调填 <code id="sync-redirect-baidu">http://127.0.0.1:7357/oauth/callback</code>，目录默认 /apps/&lt;应用名&gt;/paper-studio。</p>
+            <button class="ghost-btn sm" id="sync-connect-baidu">绑定百度账号</button>
+          </div>
+
+          <label class="check-line"><input type="checkbox" id="sync-pdf" /> <span>同时同步 PDF 原件（体积大，默认只同步笔记 / 译文 / 对话 / 元数据）</span></label>
+          <div class="sync-actions">
+            <button class="ghost-btn sm" id="sync-test">测试连接</button>
+            <button class="ghost-btn sm" id="sync-run">立即同步</button>
+            <span class="save-state" id="sync-state">未配置</span>
+          </div>
+        </section>
+        <section class="field">
+          <label>数据目录</label>
+          <p class="mono" id="cfg-datadir">—</p>
+        </section>
+      </div>
+      <footer class="modal-foot">
+        <button class="ghost-btn" id="settings-test">测试模型</button>
+        <button class="primary-btn" id="settings-save">保存</button>
+      </footer>
+    </div>
+  </div>
+
+  <input type="file" id="file-input" accept="application/pdf,.pdf" multiple hidden />
+
+  <div class="modal" id="fig-modal" hidden>
+    <div class="modal-card fig-modal-card">
+      <header class="modal-head">
+        <h2 id="fig-modal-title">框架图</h2>
+        <button class="icon-btn" id="fig-modal-close" aria-label="关闭">
+          <svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>
+        </button>
+      </header>
+      <div class="modal-body" id="fig-modal-body"></div>
+      <footer class="modal-foot">
+        <span class="field-hint">矢量图由论文内容生成，可导出后放进 slides 或笔记</span>
+        <div class="fig-modal-actions">
+          <button class="ghost-btn" id="fig-modal-svg">导出 SVG</button>
+          <button class="ghost-btn" id="fig-modal-png">导出 PNG</button>
+        </div>
+      </footer>
+    </div>
+  </div>
+
+  <!-- Selection action bubble -->
+  <div class="sel-card" id="sel-card" hidden>
+    <div class="sel-card-head">
+      <span>划词翻译</span>
+      <button class="icon-btn sm" id="sel-card-close" aria-label="关闭">
+        <svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+    </div>
+    <p class="sel-card-src" id="sel-card-src"></p>
+    <div class="sel-card-zh" id="sel-card-zh"></div>
+    <div class="sel-card-actions">
+      <button class="ghost-btn sm" data-sel-act="ask">就这段提问</button>
+      <button class="ghost-btn sm" data-sel-act="note">记入笔记</button>
+      <button class="ghost-btn sm" data-sel-act="copy">复制译文</button>
+    </div>
+  </div>
+
+
+
+  <div class="modal-mask" id="import-dialog" hidden>
+    <div class="modal-card import-card">
+      <div class="modal-head">
+        <h3>导入论文</h3>
+        <button class="icon-btn sm" id="import-dialog-close" aria-label="关闭">
+          <svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>
+        </button>
+      </div>
+      <form id="import-url-form" class="import-url-form">
+        <label class="field-label" for="import-url-input">arXiv 编号或 PDF 链接</label>
+        <input id="import-url-input" type="text" spellcheck="false"
+          placeholder="arXiv:2410.12345 · https://arxiv.org/abs/2410.12345 · https://…/paper.pdf" />
+        <button class="primary-btn" type="submit">从链接导入</button>
+      </form>
+      <div class="import-or"><span>或者</span></div>
+      <button class="ghost-btn" id="import-pick-file">选择本地 PDF 文件</button>
+      <p class="field-hint">也可以直接把 PDF 拖进这个面板。链接支持 arXiv 摘要页 / PDF 页，以及任何以 .pdf 结尾的地址。</p>
+    </div>
+  </div>
+
+  <div class="import-overlay" id="import-overlay" hidden>
+    <div class="import-card">
+      <h3 id="import-title">正在导入</h3>
+      <p id="import-detail">准备中…</p>
+      <div class="bar"><i id="import-bar"></i></div>
+    </div>
+  </div>
+</div>
+<script defer src="./vendor/katex/katex.min.js"></script>
+<script type="module" src="./app.js"></script>
+</body>
+</html>

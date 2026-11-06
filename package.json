@@ -1,0 +1,46 @@
+{
+  "name": "dsh-paper-studio",
+  "version": "0.6.3",
+  "description": "DeepSeek Harness 插件：DeepPaperReading —— 论文整页对照翻译 / 引用式伴读对话 / 框架图 / 本地与 arXiv 导入 / 笔记 / 跨设备同步 / 相关与热点推荐",
+  "license": "MIT",
+  "type": "module",
+  "main": "./lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./client": "./lib/client.js",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib",
+    "web",
+    "cordis.patch.yml",
+    "README.md",
+    "README.en.md",
+    "docs"
+  ],
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "inject": [
+        "@deepseek-ai/dsh-client-runtime",
+        "@deepseek-ai/dsh-client-ui-slots"
+      ],
+      "platform": "web"
+    }
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "keywords": [
+    "dsh-plugin",
+    "deepseek-harness",
+    "paper",
+    "pdf",
+    "reading",
+    "translation",
+    "arxiv",
+    "notes"
+  ]
+}
