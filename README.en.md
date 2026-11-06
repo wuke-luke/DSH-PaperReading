@@ -1,8 +1,8 @@
 <p align="center">
-  <img src="docs/logo.svg" width="92" alt="DeepPaperReading" />
+  <img src="docs/logo.svg" width="92" alt="DSH-PaperReading" />
 </p>
 
-<h1 align="center">DeepPaperReading</h1>
+<h1 align="center">DSH-PaperReading</h1>
 
 <p align="center">
   <b>Read papers inside DeepSeek Harness</b><br />
@@ -14,7 +14,7 @@
 </p>
 
 <p align="center">
-  <img alt="version" src="https://img.shields.io/badge/version-0.6.3-b4565f" />
+  <img alt="version" src="https://img.shields.io/badge/version-0.6.4-b4565f" />
   <img alt="license" src="https://img.shields.io/badge/license-MIT-1f1c18" />
   <img alt="platform" src="https://img.shields.io/badge/DeepSeek%20Harness-plugin-2f6f4f" />
   <img alt="pdf" src="https://img.shields.io/badge/PDF-pdf.js-6b6455" />
@@ -58,8 +58,8 @@ DeepPaperReading puts **the PDF, the translation, the chat, the notes and the di
 ## Getting started
 
 ```bash
-git clone https://github.com/wuke-luke/deeppaperreading DeepPaperReading
-cd DeepPaperReading
+git clone https://github.com/wuke-luke/DSH-PaperReading DSH-PaperReading
+cd DSH-PaperReading
 node dev/server.mjs     # standalone preview: http://127.0.0.1:7788/paper-studio/
 ```
 
@@ -68,8 +68,8 @@ Enable it inside DSH:
 ```jsonc
 // ~/.dsh/profiles/<profile>/package.json
 {
-  "dependencies": { "dsh-deeppaperreading": "link:D:/path/to/DeepPaperReading" },
-  "dsh": { "bundles": ["dsh-deeppaperreading"] }
+  "dependencies": { "dsh-paperreading": "link:D:/path/to/DeepPaperReading" },
+  "dsh": { "bundles": ["dsh-paperreading"] }
 }
 ```
 

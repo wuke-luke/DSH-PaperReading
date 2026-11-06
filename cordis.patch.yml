@@ -4,4 +4,4 @@
 # (exports "./client") load in the web GUI and register the sidebar panel.
 - insert:
     - id: paper-studio
-      name: 'dsh-deeppaperreading'
+      name: 'dsh-paperreading'

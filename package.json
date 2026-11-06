@@ -1,7 +1,7 @@
 {
-  "name": "dsh-deeppaperreading",
-  "version": "0.6.3",
-  "description": "DeepSeek Harness 插件：DeepPaperReading —— 论文整页对照翻译 / 引用式伴读对话 / 框架图 / 本地与 arXiv 导入 / 笔记 / 跨设备同步 / 相关与热点推荐",
+  "name": "dsh-paperreading",
+  "version": "0.6.4",
+  "description": "DSH-PaperReading —— 论文阅读工作台：中英整页对照翻译 / 划词即译 / 带页码引用的伴读对话 / 笔记 / 同步 / token 记账",
   "license": "MIT",
   "type": "module",
   "main": "./lib/index.js",
