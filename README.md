@@ -10,7 +10,7 @@
 </p>
 
 <p align="center">
-  <a href="README.en.md">English</a> · <b>中文</b>
+  <a href="README.en.md">English</a> · <b>中文</b> · <a href="https://wuke-luke.github.io/DSH-PaperReading/">官网</a>
 </p>
 
 <p align="center">
@@ -65,8 +65,8 @@ DeepPaperReading 把这些收进 DSH 的一个侧栏面板：**原文、译文�
 # Git 地址
 dsh plugin --profile web add https://github.com/wuke-luke/DSH-PaperReading
 
-# 或 Release 里的预构建包（3.3 MB）
-# https://github.com/wuke-luke/DSH-PaperReading/releases/latest
+# 或预构建包（3.3 MB，走 jsDelivr CDN，国内较快）
+curl -LO https://cdn.jsdelivr.net/gh/wuke-luke/DSH-PaperReading@master/dist/dsh-paperreading-0.6.4.tgz
 dsh plugin --profile web add ./dsh-paperreading-0.6.4.tgz
 ```
 

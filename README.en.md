@@ -10,7 +10,7 @@
 </p>
 
 <p align="center">
-  <b>English</b> · <a href="README.md">中文</a>
+  <b>English</b> · <a href="README.md">中文</a> · <a href="https://wuke-luke.github.io/DSH-PaperReading/">site</a>
 </p>
 
 <p align="center">
@@ -65,8 +65,8 @@ Three ways in.
 # git address
 dsh plugin --profile web add https://github.com/wuke-luke/DSH-PaperReading
 
-# or the prebuilt tarball from the release (3.3 MB)
-# https://github.com/wuke-luke/DSH-PaperReading/releases/latest
+# or the prebuilt tarball via jsDelivr (3.3 MB)
+curl -LO https://cdn.jsdelivr.net/gh/wuke-luke/DSH-PaperReading@master/dist/dsh-paperreading-0.6.4.tgz
 dsh plugin --profile web add ./dsh-paperreading-0.6.4.tgz
 ```
 
