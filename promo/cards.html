@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8" />
+<title>DSH-PaperReading promo cards</title>
+<style>
+  :root {
+    --paper: #f7f3ea;
+    --card: #fffdf8;
+    --ink: #1f1c18;
+    --ink-2: #45403a;
+    --muted: #7b7367;
+    --faint: #a89f90;
+    --accent: #b4565f;
+    --accent-soft: #f0dfe0;
+    --rule: #e6dfd2;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { background: var(--paper); }
+  body {
+    font-family: "PingFang SC", "Microsoft YaHei", "Songti SC", system-ui, sans-serif;
+    color: var(--ink);
+    -webkit-font-smoothing: antialiased;
+  }
+  .canvas {
+    position: relative; width: var(--w); height: var(--h); overflow: hidden;
+    background:
+      radial-gradient(900px 460px at 78% -8%, rgba(180,86,95,.10), transparent 62%),
+      radial-gradient(700px 420px at 6% 104%, rgba(120,110,90,.10), transparent 60%),
+      var(--paper);
+    display: flex; flex-direction: column;
+  }
+  .pad { padding: 84px 84px 0; }
+  .row { display: flex; align-items: center; gap: 20px; }
+  .kicker {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-size: 24px; letter-spacing: .18em; color: var(--muted);
+  }
+  .kicker::before { content: ""; width: 34px; height: 2px; background: var(--accent); border-radius: 2px; }
+  .mark { width: 132px; height: 132px; }
+  h1 {
+    font-family: "Iowan Old Style", "Palatino Linotype", "Songti SC", Georgia, serif;
+    font-size: 86px; font-weight: 500; letter-spacing: -.01em; line-height: 1.02; margin-top: 26px;
+  }
+  h1 em { font-style: normal; color: var(--accent); }
+  .lede { margin-top: 26px; font-size: 33px; line-height: 1.55; color: var(--ink-2); max-width: 880px; }
+  .chips { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 34px; }
+  .chip {
+    font-size: 26px; padding: 12px 24px; border-radius: 999px;
+    background: rgba(255,253,248,.9); border: 1px solid var(--rule); color: var(--ink-2);
+  }
+  .chip b { color: var(--accent); font-weight: 600; }
+  .shot {
+    margin: 52px 0 0; border-radius: 26px; overflow: hidden;
+    border: 1px solid var(--rule); background: var(--card);
+    box-shadow: 0 34px 70px -28px rgba(40,34,26,.45), 0 8px 20px -12px rgba(40,34,26,.2);
+  }
+  .shot img { display: block; width: 100%; }
+  .foot {
+    position: absolute; left: 84px; right: 84px; bottom: 62px;
+    display: flex; align-items: center; justify-content: space-between;
+    font-size: 24px; color: var(--faint); border-top: 1px solid var(--rule); padding-top: 26px;
+  }
+  .foot b { color: var(--ink-2); font-weight: 600; }
+
+  /* features card */
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; margin-top: 54px; }
+  .feature {
+    background: var(--card); border: 1px solid var(--rule); border-radius: 24px; padding: 34px 32px 38px;
+    box-shadow: 0 18px 40px -30px rgba(40,34,26,.4);
+  }
+  .feature .ic { font-size: 46px; line-height: 1; }
+  .feature h3 { margin-top: 20px; font-size: 33px; font-weight: 600; letter-spacing: .01em; }
+  .feature p { margin-top: 12px; font-size: 25px; line-height: 1.5; color: var(--muted); }
+  .more { margin-top: 40px; font-size: 26px; color: var(--muted); }
+  .more span { color: var(--ink-2); }
+  .aside {
+    margin-top: auto; padding: 44px 0 0;
+    display: flex; gap: 22px; align-items: stretch;
+  }
+  .aside .box { flex: 1; border-radius: 22px; padding: 30px 32px; font-size: 25px; line-height: 1.55; }
+  .aside .before { background: rgba(255,253,248,.55); border: 1px dashed var(--rule); color: var(--faint); }
+  .aside .after { background: var(--card); border: 1px solid var(--rule); color: var(--ink-2); box-shadow: 0 16px 36px -30px rgba(40,34,26,.5); }
+  .aside .box b { display: block; font-size: 21px; letter-spacing: .16em; text-transform: uppercase; margin-bottom: 12px; color: var(--faint); }
+  .aside .after b { color: var(--accent); }
+  .note {
+    margin-top: auto; padding-top: 40px; font-size: 25px; line-height: 1.6; color: var(--muted);
+    border-top: 1px solid var(--rule);
+  }
+  .note b { color: var(--ink-2); }
+
+  /* install card */
+  .code {
+    margin-top: 44px; background: #201d19; color: #f2ece0; border-radius: 22px;
+    padding: 34px 36px; font-family: "JetBrains Mono", Consolas, monospace;
+    font-size: 25px; line-height: 1.72; overflow: hidden;
+  }
+  .code .c { color: #8f8577; }
+  .code .p { color: #e0a6ac; }
+  .steps { margin-top: 40px; display: flex; flex-direction: column; gap: 22px; }
+  .step { display: flex; gap: 18px; font-size: 27px; color: var(--ink-2); line-height: 1.5; }
+  .step i {
+    flex: 0 0 auto; width: 42px; height: 42px; border-radius: 50%;
+    background: var(--accent-soft); color: var(--accent);
+    font-style: normal; font-size: 23px; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  /* x card */
+  .x .pad { padding: 60px 68px 0; }
+  .x h1 { font-size: 72px; }
+  .x .lede { font-size: 28px; margin-top: 20px; }
+  .x .chips { margin-top: 26px; }
+  .x .chip { font-size: 22px; padding: 10px 20px; }
+  .x .shot { margin-top: 34px; border-radius: 20px; }
+  .x .foot { left: 68px; right: 68px; bottom: 44px; font-size: 21px; padding-top: 20px; }
+  .x .mark { width: 96px; height: 96px; }
+</style>
+</head>
+<body>
+<div class="canvas" id="canvas"></div>
+<script>
+  const params = new URLSearchParams(location.search)
+  const card = params.get('card') || 'cover'
+  const w = Number(params.get('w') || 1080)
+  const h = Number(params.get('h') || 1440)
+  document.documentElement.style.setProperty('--w', w + 'px')
+  document.documentElement.style.setProperty('--h', h + 'px')
+  const root = 'file:///D:/DESKTOP/DeepPaperReading/'
+  const canvas = document.getElementById('canvas')
+
+  const cover = () => `
+    <div class="pad">
+      <div class="row">
+        <img class="mark" src="${root}docs/logo.svg" alt="" />
+        <div>
+          <div class="kicker">DeepSeek Harness 插件</div>
+          <div style="margin-top:14px;font-size:26px;color:var(--faint)">开源 · 免费 · 数据留在本机</div>
+        </div>
+      </div>
+      <h1>读论文，<br/>别再切四个窗口</h1>
+      <p class="lede">在 DeepSeek Harness 里装一个插件：<b style="white-space:nowrap">DSH-PaperReading</b>。<br/>PDF、翻译、对话、笔记，全在同一屏。</p>
+      <div class="chips">
+        <span class="chip"><b>中英</b>整页对照</span>
+        <span class="chip"><b>划词</b>即译</span>
+        <span class="chip"><b>页码</b>引用对话</span>
+      </div>
+      <div class="shot"><img src="${root}docs/screenshot-overview.png" alt="" /></div>
+    </div>
+    <div class="foot"><span>github.com/wuke-luke/<b>DSH-PaperReading</b></span><span>MIT</span></div>`
+
+  const features = () => `
+    <div class="pad">
+      <div class="kicker">它做了什么</div>
+      <h1 style="font-size:74px;margin-top:22px">把四件事<br/>收进一个侧栏</h1>
+      <div class="grid">
+        <div class="feature"><div class="ic">📥</div><h3>导入</h3><p>本地 PDF、arXiv 编号或链接，拖进去就行。</p></div>
+        <div class="feature"><div class="ic">🀄</div><h3>整页对照</h3><p>左边中文页，右边原版页，逐页并排。</p></div>
+        <div class="feature"><div class="ic">🔍</div><h3>划词翻译</h3><p>选中一句，光标旁直接出译文。</p></div>
+        <div class="feature"><div class="ic">💬</div><h3>伴读对话</h3><p>回答带 [p.12] 页码，点了跳原文。</p></div>
+      </div>
+      <p class="more">还有 <span>笔记</span> · <span>框架图</span> · <span>相似论文</span> · <span>云同步</span> · <span>token 记账</span></p>
+      <div class="aside">
+        <div class="box before"><b>以前</b>翻译软件 → 复制 → ChatGPT → 笔记软件</div>
+        <div class="box after"><b>现在</b>一个侧栏，原文、译文、对话、笔记都在里面</div>
+      </div>
+    </div>
+    <div class="foot"><span>github.com/wuke-luke/<b>DSH-PaperReading</b></span><span>MIT</span></div>`
+
+  const shot = () => `
+    <div class="pad">
+      <div class="kicker">实际长这样</div>
+      <h1 style="font-size:66px;margin-top:20px">对着原文读，<br/>中文就在旁边</h1>
+      <div class="shot" style="margin-top:44px"><img src="${root}docs/screenshot-overview.png" alt="" /></div>
+      <p class="lede" style="font-size:27px;margin-top:34px">版式跟着原文走：双栏、图表、页脚都留在原位，图里的字不会被乱翻。</p>
+    </div>
+    <div class="foot"><span>对照模式 · 左中文 / 右原版</span><span>DSH-PaperReading</span></div>`
+
+  const install = () => `
+    <div class="pad">
+      <div class="kicker">怎么装</div>
+      <h1 style="font-size:70px;margin-top:20px">三步，<br/>两分钟</h1>
+      <div class="steps">
+        <div class="step"><i>1</i><span>在 DSH 的插件市场（dshmarket → 发现）搜 <b>DSH-PaperReading</b></span></div>
+        <div class="step"><i>2</i><span>或者直接装：<code>dsh plugin add dsh-paperreading</code></span></div>
+        <div class="step"><i>3</i><span>没有 npm 也行，从 GitHub 拉下来链进 profile</span></div>
+      </div>
+      <div class="code">
+<span class="c"># 方式二：从源码</span><br/>
+git clone https://github.com/wuke-luke/DSH-PaperReading<br/>
+<span class="c"># profile 里加：</span><br/>
+<span class="p">"dsh-paperreading"</span>: <span class="p">"link:D:/path/to/DSH-PaperReading"</span>
+      </div>
+      <p class="more" style="margin-top:36px">装完左栏多一个图标，<span>论文、译文、笔记都存在你自己的机器上</span>。</p>
+      <div class="note">需要 <b>DSH 0.2+</b> 与 <b>Node 22+</b>；模型可以直接用 DSH 登录的账号，也可以填自己的 <b>OpenAI 兼容 API Key</b>。翻译和对话都在本机发起，插件不内置任何第三方密钥。</div>
+    </div>
+    <div class="foot"><span>github.com/wuke-luke/<b>DSH-PaperReading</b></span><span>MIT</span></div>`
+
+
+  const xcover = () => `
+    <div class="pad" style="flex:1;display:flex;flex-direction:column;justify-content:center;padding:54px 66px">
+      <div class="row">
+        <img class="mark" src="${root}docs/logo.svg" alt="" style="width:104px;height:104px" />
+        <div>
+          <div class="kicker" style="font-size:21px">DeepSeek Harness 插件推荐</div>
+          <div style="margin-top:10px;font-size:22px;color:var(--faint)">开源 · 免费 · 数据留在本机</div>
+        </div>
+      </div>
+      <h1 style="font-size:64px;margin-top:26px">读论文，<br/>别再切四个窗口</h1>
+      <p class="lede" style="font-size:26px;margin-top:18px;max-width:900px">
+        在 DeepSeek Harness 里装一个 <b style="white-space:nowrap">DSH-PaperReading</b>：
+        PDF、翻译、对话、笔记全在同一屏。
+      </p>
+      <div class="chips" style="margin-top:22px">
+        <span class="chip" style="font-size:21px;padding:9px 18px"><b>中英</b>整页对照</span>
+        <span class="chip" style="font-size:21px;padding:9px 18px"><b>划词</b>即译</span>
+        <span class="chip" style="font-size:21px;padding:9px 18px"><b>页码</b>引用对话</span>
+      </div>
+      <div style="margin-top:34px;font-size:22px;color:var(--faint)">github.com/wuke-luke/<b style="color:var(--ink-2)">DSH-PaperReading</b></div>
+    </div>`
+
+  const ratio = params.get('ratio')
+  canvas.innerHTML = (ratio === 'x' && card === 'cover') ? xcover() : ({ cover, features, shot, install }[card]?.() || cover())
+  if (ratio === 'x') canvas.classList.add('x')
+  if (params.get('ratio') === 'x') canvas.classList.add('x')
+</script>
+</body>
+</html>
