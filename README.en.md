@@ -58,7 +58,7 @@ DeepPaperReading puts **the PDF, the translation, the chat, the notes and the di
 ## Getting started
 
 ```bash
-git clone <repo> DeepPaperReading
+git clone https://github.com/wuke-luke/deeppaperreading DeepPaperReading
 cd DeepPaperReading
 node dev/server.mjs     # standalone preview: http://127.0.0.1:7788/paper-studio/
 ```
@@ -68,8 +68,8 @@ Enable it inside DSH:
 ```jsonc
 // ~/.dsh/profiles/<profile>/package.json
 {
-  "dependencies": { "dsh-paper-studio": "link:D:/path/to/DeepPaperReading" },
-  "dsh": { "bundles": ["dsh-paper-studio"] }
+  "dependencies": { "dsh-deeppaperreading": "link:D:/path/to/DeepPaperReading" },
+  "dsh": { "bundles": ["dsh-deeppaperreading"] }
 }
 ```
 

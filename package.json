@@ -1,5 +1,5 @@
 {
-  "name": "dsh-paper-studio",
+  "name": "dsh-deeppaperreading",
   "version": "0.6.3",
   "description": "DeepSeek Harness 插件：DeepPaperReading —— 论文整页对照翻译 / 引用式伴读对话 / 框架图 / 本地与 arXiv 导入 / 笔记 / 跨设备同步 / 相关与热点推荐",
   "license": "MIT",
@@ -42,5 +42,14 @@
     "translation",
     "arxiv",
     "notes"
-  ]
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wuke-luke/deeppaperreading.git"
+  },
+  "homepage": "https://github.com/wuke-luke/deeppaperreading#readme",
+  "bugs": {
+    "url": "https://github.com/wuke-luke/deeppaperreading/issues"
+  },
+  "author": "wuke-luke"
 }

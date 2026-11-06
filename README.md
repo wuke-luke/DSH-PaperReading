@@ -58,7 +58,7 @@ DeepPaperReading 把这些收进 DSH 的一个侧栏面板：**原文、译文�
 ## 快速开始
 
 ```bash
-git clone <repo> DeepPaperReading
+git clone https://github.com/wuke-luke/deeppaperreading DeepPaperReading
 cd DeepPaperReading
 node dev/server.mjs     # 独立预览 http://127.0.0.1:7788/paper-studio/
 ```
@@ -68,8 +68,8 @@ node dev/server.mjs     # 独立预览 http://127.0.0.1:7788/paper-studio/
 ```jsonc
 // ~/.dsh/profiles/<profile>/package.json
 {
-  "dependencies": { "dsh-paper-studio": "link:D:/path/to/DeepPaperReading" },
-  "dsh": { "bundles": ["dsh-paper-studio"] }
+  "dependencies": { "dsh-deeppaperreading": "link:D:/path/to/DeepPaperReading" },
+  "dsh": { "bundles": ["dsh-deeppaperreading"] }
 }
 ```
 
